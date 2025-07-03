@@ -7,8 +7,9 @@ from Minkabu's stock detail page with paging support.
 
 import asyncio
 import csv
-from playwright.async_api import async_playwright
 import sys
+
+from playwright.async_api import async_playwright
 
 
 async def scrape(symbol: str):
@@ -71,6 +72,8 @@ async def parse_row(row):
 
 def save_to_csv(data, output_file):
     with open(output_file, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"])
+        writer = csv.DictWriter(
+            f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"]
+        )
         writer.writeheader()
         writer.writerows(data)

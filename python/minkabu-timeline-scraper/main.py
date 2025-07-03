@@ -1,6 +1,7 @@
 # main.py
-import sys
 import asyncio
+import sys
+
 from scraper import scrape
 
 if __name__ == "__main__":

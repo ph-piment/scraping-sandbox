@@ -1,7 +1,9 @@
-import pytest
 import asyncio
-from scraper import extract_table_rows, parse_row
+
+import pytest
 from playwright.async_api import async_playwright
+
+from scraper import extract_table_rows, parse_row
 
 HTML = """
 <table id="fourvalue_timeline">
@@ -18,6 +20,7 @@ HTML = """
   </tbody>
 </table>
 """
+
 
 @pytest.mark.asyncio
 async def test_parse_row_with_mock_html():
