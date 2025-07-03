@@ -36,6 +36,16 @@ jobs:
           echo "Running pip-audit..."
           pip-audit
 
+      - name: 🔐 Bandit security check
+        run: |
+          echo "Running bandit..."
+          bandit -r . -x tests -s B101
+
+      - name: 🛡️ Safety dependency vulnerability scan
+        run: |
+          echo "Running safety..."
+          safety check --full-report
+
       - name: 🧹 Lint with flake8
         run: |
           echo "Running flake8..."
