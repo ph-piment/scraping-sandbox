@@ -19,6 +19,7 @@ HTML = """
 </table>
 """
 
+
 @pytest.mark.asyncio
 async def test_parse_row_with_mock_html():
     async with async_playwright() as p:

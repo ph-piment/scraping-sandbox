@@ -71,6 +71,8 @@ async def parse_row(row):
 
 def save_to_csv(data, output_file):
     with open(output_file, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"])
+        writer = csv.DictWriter(
+            f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"]
+        )
         writer.writeheader()
         writer.writerows(data)
