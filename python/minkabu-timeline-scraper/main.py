@@ -2,8 +2,8 @@
 import asyncio
 import sys
 
-from scraper import scrape
 from playwright.async_api import Error
+from scraper import scrape
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

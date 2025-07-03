@@ -1,6 +1,5 @@
 import pytest
 from playwright.async_api import async_playwright
-
 from scraper import extract_table_rows, parse_row
 
 HTML = """
