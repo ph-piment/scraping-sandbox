@@ -1,0 +1,3 @@
+{
+  "extends": ["github>ph-piment/renovate-config"]
+}
