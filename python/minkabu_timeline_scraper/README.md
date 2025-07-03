@@ -1,18 +1,17 @@
-# Minkabu Timeline Scraper 📈
+# 📈 Minkabu Timeline Scraper
 
-This script scrapes historical stock data from the [Minkabu](https://minkabu.jp/) stock detail page using [Playwright](https://playwright.dev/python/).  
-It handles pagination and outputs the result as a CSV file.
+An elegant, asynchronous scraper for historical stock data from [Minkabu](https://minkabu.jp/), built with [Playwright for Python](https://playwright.dev/python/).
 
 ---
 
-## 📌 Features
+## ✨ Features
 
-- Headless scraping using Playwright (async)
-- Target: Minkabu's `/daily_bar` page for a stock symbol
-- Extracts Date, Open, High, Low, Close, Volume
-- Clicks through pages with "次へ" button
-- Outputs data to `{symbol}_output.csv`
-- Includes basic error handling
+- ✅ Async scraping via Playwright (headless)
+- 📄 Targets `/daily_bar` timeline for a given stock symbol
+- 🔍 Extracts: `Date`, `Open`, `High`, `Low`, `Close`, `Volume`
+- 🔁 Handles pagination by clicking `次へ`
+- 💾 Outputs `{symbol}_output.csv`
+- 🛠 Includes basic error handling & retry logic
 
 ---
 
@@ -27,15 +26,15 @@ playwright install
 
 💡 playwright install is required to download the browser binaries.
 
-### 2. Run the script
+### 2. Run the scraper
 ```bash
-python main.py 281A
+PYTHONPATH=. python minkabu_timeline_scraper/main.py 281A
 ```
 Replace 281A with any valid Minkabu stock symbol (e.g., 6501, 7203, etc).
 
-## 🧪 Output Sample
+### 3. Output sample
 
-Output file will be named like 281A_output.csv.
+Creates a CSV like 281A_output.csv:
 
 ```bash
 Date,Open,High,Low,Close,Volume
@@ -44,18 +43,34 @@ Date,Open,High,Low,Close,Volume
 ...
 ```
 
+## 🧪 Testing & Quality
+
+This repo includes built-in CI checks:
+
+✅ pytest + coverage
+🎨 black, isort, flake8, pylint, mypy
+🔐 bandit, pip-audit for security
+📦 Uses requirements.txt for consistent builds
+To run tests locally:
+
+```
+PYTHONPATH=. pytest
+```
+
 ## 📄 Notes
 
-- Minkabu allows scraping of /stock/{symbol} URLs per their robots.txt.
-- Do not overwhelm the site with frequent requests. This script includes a small delay between pages.
-- Educational use only. Respect the target website and its terms of service.
+- ✅ Minkabu's /stock/{symbol} is allowed in robots.txt
+- 🧘‍♂️ Includes sleep between pages to avoid overloading the server
+- 🚫 Use responsibly — this is for educational/demo use only
 
-## 📂 File Structure
+## 📂 Project Structure
 
 ```bash
 minkabu_timeline_scraper/
-├── main.py
-├── scraper.py
+├── main.py                 # CLI entrypoint
+├── scraper.py              # Scraper logic
+├── tests/
+│   └── test_scraper.py     # Basic unit tests
 ├── requirements.txt
 └── README.md
 ```
