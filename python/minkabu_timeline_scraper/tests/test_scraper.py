@@ -1,6 +1,6 @@
 import pytest
 from playwright.async_api import async_playwright
-from scraper import extract_table_rows, parse_row
+from minkabu_timeline_scraper.scraper import extract_table_rows, parse_row
 
 HTML = """
 <table id="fourvalue_timeline">
