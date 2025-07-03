@@ -29,7 +29,7 @@ playwright install
 
 ### 2. Run the script
 ```bash
-python scraper.py 281A
+python main.py 281A
 ```
 Replace 281A with any valid Minkabu stock symbol (e.g., 6501, 7203, etc).
 
@@ -54,6 +54,7 @@ Date,Open,High,Low,Close,Volume
 
 ```bash
 minkabu-timeline-scraper/
+├── main.py
 ├── scraper.py
 ├── requirements.txt
 └── README.md

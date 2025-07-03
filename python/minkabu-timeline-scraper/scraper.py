@@ -22,35 +22,17 @@ async def scrape(symbol: str):
         table_selector = "#fourvalue_timeline"
 
         await page.goto(url, timeout=60000)
-        await page.wait_for_selector(table_selector, timeout=10000)
 
         print(f"✅ Scraping {url}")
 
         all_data = []
 
         while True:
-            rows = await page.query_selector_all(f"{table_selector} tbody tr")
+            rows = await extract_table_rows(page, table_selector)
             for row in rows:
-                td_cols = await row.query_selector_all("td")
-                if len(td_cols) != 7:
-                    continue
-
-                date = await td_cols[0].inner_text()
-                opening_price = await td_cols[1].inner_text()
-                high_price = await td_cols[2].inner_text()
-                low_price = await td_cols[3].inner_text()
-                closing_price = await td_cols[4].inner_text()
-                # adjusted_closing_price = await td_cols[5].inner_text()
-                volume = await td_cols[6].inner_text()
-
-                all_data.append({
-                    "Date": date.strip(),
-                    "Open": opening_price.strip(),
-                    "High": high_price.strip(),
-                    "Low": low_price.strip(),
-                    "Close": closing_price.strip(),
-                    "Volume": volume.strip(),
-                })
+                parsed = await parse_row(row)
+                if parsed is not None:
+                    all_data.append(parsed)
 
             next_button = await page.query_selector("a.next_page")
             if next_button:
@@ -62,22 +44,33 @@ async def scrape(symbol: str):
         await browser.close()
 
         output_file = f"{symbol}_output.csv"
-        with open(output_file, "w", newline="", encoding="utf-8") as f:
-            writer = csv.DictWriter(f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"])
-            writer.writeheader()
-            writer.writerows(all_data)
+        save_to_csv(all_data, output_file)
 
         print(f"✅ Scraped {len(all_data)} rows and saved to {output_file}")
 
 
-if __name__ == "__main__":
-    if len(sys.argv) < 2:
-        print("❌ Usage: python scraper.py <symbol>")
-        sys.exit(1)
+async def extract_table_rows(page, selector):
+    await page.wait_for_selector(selector, timeout=10000)
+    return await page.query_selector_all(f"{selector} tbody tr")
 
-    symbol = sys.argv[1]
 
-    try:
-        asyncio.run(scrape(symbol))
-    except Exception as e:
-        print(f"❌ Error: {e}")
+async def parse_row(row):
+    cols = await row.query_selector_all("td")
+    if len(cols) != 7:
+        return None
+    return {
+        "Date": (await cols[0].inner_text()).strip(),
+        "Open": (await cols[1].inner_text()).strip(),
+        "High": (await cols[2].inner_text()).strip(),
+        "Low": (await cols[3].inner_text()).strip(),
+        "Close": (await cols[4].inner_text()).strip(),
+        # "AdjustedClosingPrice": (await cols[5].inner_text()).strip(),
+        "Volume": (await cols[6].inner_text()).strip(),
+    }
+
+
+def save_to_csv(data, output_file):
+    with open(output_file, "w", newline="", encoding="utf-8") as f:
+        writer = csv.DictWriter(f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"])
+        writer.writeheader()
+        writer.writerows(data)
