@@ -44,7 +44,7 @@ jobs:
       - name: 📚 Check import order with isort
         run: |
           echo "Running isort --check-only..."
-          isort . --check-only
+          isort . --check-only --settings-path=.
 
       - name: 🔍 Type check with mypy
         run: |
