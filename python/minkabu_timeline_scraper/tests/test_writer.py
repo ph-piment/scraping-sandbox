@@ -1,4 +1,5 @@
 import csv
+
 from minkabu_timeline_scraper.writer import save_csv
 
 
