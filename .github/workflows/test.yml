@@ -73,3 +73,16 @@ jobs:
 
       - name: ✅ Run tests with pytest
         run: PYTHONPATH=. pytest
+
+      - name: 🧪 Run tests with coverage
+        run: |
+          echo "Running pytest with coverage..."
+          PYTHONPATH=. pytest --cov=minkabu_timeline_scraper --cov-report=xml
+
+      - name: 📤 Upload coverage to Codecov
+        uses: codecov/codecov-action@v4
+        with:
+          token: ${{ secrets.CODECOV_TOKEN }}
+          files: ./coverage.xml
+          flags: unittests
+          name: codecov-report
