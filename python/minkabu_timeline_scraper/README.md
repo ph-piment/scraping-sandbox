@@ -13,6 +13,25 @@ An elegant, asynchronous scraper for historical stock data from [Minkabu](https:
 - 💾 Outputs `./outputs/minkabu_timeline_scraper/{symbol}.csv`
 - 🛠 Includes basic error handling & retry logic
 
+## 🗂 Scraping Target
+
+This scraper extracts data from the following section of the [Minkabu stock detail page](https://minkabu.jp/stock/{symbol}/daily_bar):
+
+📍 **HTML Table: 株価時系列データ (Historical Price Data)**
+
+📷 Example: The stock price time series table scraped from Minkabu's `/daily_bar` page
+![minkabu_price_table](./docs/minkabu_table_sample.png)
+
+The table includes:
+- **Date**（日時）
+- **Open**（始値）
+- **High**（高値）
+- **Low**（安値）
+- **Close**（終値）
+- **Volume**（出来高）
+
+> Pagination is handled by clicking the 「次へ」 button to traverse all pages.
+
 ---
 
 ## 🚀 Usage
