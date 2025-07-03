@@ -3,10 +3,10 @@ name: Run Python tests
 on:
   push:
     paths:
-      - 'python/minkabu-timeline-scraper/**'
+      - 'python/**'
   pull_request:
     paths:
-      - 'python/minkabu-timeline-scraper/**'
+      - 'python/**'
 
 jobs:
   test:
@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: python/minkabu-timeline-scraper
+        working-directory: python
 
     steps:
       - name: 📥 Checkout code
@@ -54,7 +54,7 @@ jobs:
       - name: 🧐 Run Pylint
         run: |
           echo "Running pylint..."
-          pylint --rcfile=../../.pylintrc $(find . -name "*.py")
+          pylint $(find . -name "*.py")
 
       - name: ✅ Run tests with pytest
         run: PYTHONPATH=. pytest
