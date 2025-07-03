@@ -54,7 +54,7 @@ jobs:
       - name: 🧐 Run Pylint
         run: |
           echo "Running pylint..."
-          pylint python/minkabu-timeline-scraper
+          pylint $(find python/minkabu-timeline-scraper -name "*.py")
 
       - name: ✅ Run tests with pytest
         run: PYTHONPATH=. pytest
