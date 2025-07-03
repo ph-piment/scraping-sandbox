@@ -51,5 +51,10 @@ jobs:
           echo "Running mypy..."
           mypy .
 
+      - name: 🧐 Run Pylint
+        run: |
+          echo "Running pylint..."
+          pylint python/minkabu-timeline-scraper
+
       - name: ✅ Run tests with pytest
         run: PYTHONPATH=. pytest
