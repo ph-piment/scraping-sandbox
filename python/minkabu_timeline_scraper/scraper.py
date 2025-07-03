@@ -42,7 +42,7 @@ async def scrape(symbol: str):
 
         await browser.close()
 
-        output_file = f"{symbol}_output.csv"
+        output_file = f"./outputs/minkabu_timeline_scraper/{symbol}.csv"
         save_csv(
             all_data, output_file, ["Date", "Open", "High", "Low", "Close", "Volume"]
         )

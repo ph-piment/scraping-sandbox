@@ -10,7 +10,7 @@ An elegant, asynchronous scraper for historical stock data from [Minkabu](https:
 - 📄 Targets `/daily_bar` timeline for a given stock symbol
 - 🔍 Extracts: `Date`, `Open`, `High`, `Low`, `Close`, `Volume`
 - 🔁 Handles pagination by clicking `次へ`
-- 💾 Outputs `{symbol}_output.csv`
+- 💾 Outputs `./outputs/minkabu_timeline_scraper/{symbol}.csv`
 - 🛠 Includes basic error handling & retry logic
 
 ---
@@ -34,7 +34,7 @@ Replace 281A with any valid Minkabu stock symbol (e.g., 6501, 7203, etc).
 
 ### 3. Output sample
 
-Creates a CSV like 281A_output.csv:
+Creates a CSV like 281A.csv:
 
 ```bash
 Date,Open,High,Low,Close,Volume
