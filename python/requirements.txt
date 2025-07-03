@@ -23,4 +23,4 @@ pylint==3.3.7
 pip_audit==2.9.0
 setuptools==80.9.0
 bandit==1.7.7
-safety==3.5.2
+safety==2.3.5
