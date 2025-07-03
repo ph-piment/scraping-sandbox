@@ -7,8 +7,9 @@ from Minkabu's stock detail page with paging support.
 
 import asyncio
 import csv
-from playwright.async_api import async_playwright
 import sys
+
+from playwright.async_api import async_playwright
 
 
 async def scrape(symbol: str):
