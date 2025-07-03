@@ -88,8 +88,10 @@ PYTHONPATH=. pytest
 minkabu_timeline_scraper/
 ├── main.py                 # CLI entrypoint
 ├── scraper.py              # Scraper logic
+├── writer.py               # Output logic
 ├── tests/
-│   └── test_scraper.py     # Basic unit tests
+│   ├── test_scraper.py     # Scraper unit tests
+│   └── test_writer.py      # Writer module tests
 ├── requirements.txt
 └── README.md
 ```
