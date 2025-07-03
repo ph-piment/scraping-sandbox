@@ -5,9 +5,9 @@ This script uses Playwright (async) to scrape historical stock data
 from Minkabu's stock detail page with paging support.
 """
 
-import csv
-
 from playwright.async_api import async_playwright
+
+from minkabu_timeline_scraper.writer import save_csv
 
 
 async def scrape(symbol: str):
@@ -43,7 +43,7 @@ async def scrape(symbol: str):
         await browser.close()
 
         output_file = f"{symbol}_output.csv"
-        save_to_csv(all_data, output_file)
+        save_csv(all_data, output_file, ["Date", "Open", "High", "Low", "Close", "Volume"])
 
         print(f"✅ Scraped {len(all_data)} rows and saved to {output_file}")
 
@@ -66,12 +66,3 @@ async def parse_row(row):
         # "AdjustedClosingPrice": (await cols[5].inner_text()).strip(),
         "Volume": (await cols[6].inner_text()).strip(),
     }
-
-
-def save_to_csv(data, output_file):
-    with open(output_file, "w", newline="", encoding="utf-8") as f:
-        writer = csv.DictWriter(
-            f, fieldnames=["Date", "Open", "High", "Low", "Close", "Volume"]
-        )
-        writer.writeheader()
-        writer.writerows(data)
