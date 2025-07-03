@@ -43,7 +43,9 @@ async def scrape(symbol: str):
         await browser.close()
 
         output_file = f"{symbol}_output.csv"
-        save_csv(all_data, output_file, ["Date", "Open", "High", "Low", "Close", "Volume"])
+        save_csv(
+            all_data, output_file, ["Date", "Open", "High", "Low", "Close", "Volume"]
+        )
 
         print(f"✅ Scraped {len(all_data)} rows and saved to {output_file}")
 
