@@ -51,5 +51,10 @@ jobs:
           echo "Running mypy..."
           mypy .
 
+      - name: 🧐 Run Pylint
+        run: |
+          echo "Running pylint..."
+          pylint --rcfile=../../.pylintrc $(find . -name "*.py")
+
       - name: ✅ Run tests with pytest
         run: PYTHONPATH=. pytest

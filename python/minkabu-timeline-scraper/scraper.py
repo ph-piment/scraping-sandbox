@@ -5,9 +5,7 @@ This script uses Playwright (async) to scrape historical stock data
 from Minkabu's stock detail page with paging support.
 """
 
-import asyncio
 import csv
-import sys
 
 from playwright.async_api import async_playwright
 

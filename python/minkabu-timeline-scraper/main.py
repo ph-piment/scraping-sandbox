@@ -2,6 +2,7 @@
 import asyncio
 import sys
 
+from playwright.async_api import Error
 from scraper import scrape
 
 if __name__ == "__main__":
@@ -13,5 +14,5 @@ if __name__ == "__main__":
 
     try:
         asyncio.run(scrape(symbol))
-    except Exception as e:
-        print(f"❌ Error: {e}")
+    except Error as e:
+        print(f"❌ Playwright Error: {e}")
