@@ -53,7 +53,7 @@ Date,Open,High,Low,Close,Volume
 ## 📂 File Structure
 
 ```bash
-minkabu-timeline-scraper/
+minkabu_timeline_scraper/
 ├── main.py
 ├── scraper.py
 ├── requirements.txt

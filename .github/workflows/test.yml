@@ -3,10 +3,10 @@ name: Run Python tests
 on:
   push:
     paths:
-      - 'python/minkabu-timeline-scraper/**'
+      - 'python/**'
   pull_request:
     paths:
-      - 'python/minkabu-timeline-scraper/**'
+      - 'python/**'
 
 jobs:
   test:
@@ -14,7 +14,7 @@ jobs:
 
     defaults:
       run:
-        working-directory: python/minkabu-timeline-scraper
+        working-directory: python
 
     steps:
       - name: 📥 Checkout code
@@ -44,7 +44,7 @@ jobs:
       - name: 📚 Check import order with isort
         run: |
           echo "Running isort --check-only..."
-          isort . --check-only
+          isort . --check-only --settings-path=.
 
       - name: 🔍 Type check with mypy
         run: |
@@ -54,7 +54,7 @@ jobs:
       - name: 🧐 Run Pylint
         run: |
           echo "Running pylint..."
-          pylint --rcfile=../../.pylintrc $(find . -name "*.py")
+          pylint $(find . -name "*.py")
 
       - name: ✅ Run tests with pytest
         run: PYTHONPATH=. pytest
