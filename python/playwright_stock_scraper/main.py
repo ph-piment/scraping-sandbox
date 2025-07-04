@@ -31,6 +31,6 @@ if __name__ == "__main__":
             print("❌ Invalid format. Use 'csv' or 'json'.")
             sys.exit(1)
 
-        print(f"✅ Data saved to {OUTPUT_DIR_FILE}")
+        print(f"✅ Data saved to {OUTPUT_FILE_PATH}")
     except Error as e:
         print(f"❌ Playwright Error: {e}")
