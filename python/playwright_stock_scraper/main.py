@@ -4,7 +4,7 @@ import sys
 
 from playwright.async_api import Error
 
-from minkabu_timeline_scraper.scraper import scrape
+from playwright_stock_scraper.scraper import scrape
 
 if __name__ == "__main__":
     if len(sys.argv) < 2:

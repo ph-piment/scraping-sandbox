@@ -1,6 +1,6 @@
 import csv
 
-from minkabu_timeline_scraper.writer import save_csv
+from playwright_stock_scraper.writer import save_csv
 
 
 def test_save_csv_default_fieldnames(tmp_path):
