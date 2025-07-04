@@ -1,4 +1,4 @@
-# 📈 Minkabu Timeline Scraper
+# 📈 Playwright Stock Scraper
 
 An elegant, asynchronous scraper for historical stock data from [Minkabu](https://minkabu.jp/), built with [Playwright for Python](https://playwright.dev/python/).
 
