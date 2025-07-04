@@ -46,7 +46,7 @@ async def scrape(symbol: str) -> list[dict]:
 
 
 async def extract_table_rows(page, selector):
-    await page.wait_for_selector(selector, timeout=10000)
+    await page.wait_for_selector(selector, timeout=10000, state="attached")
     return await page.query_selector_all(f"{selector} tbody tr")
 
 
