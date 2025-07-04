@@ -10,7 +10,7 @@ An elegant, asynchronous scraper for historical stock data from [Minkabu](https:
 - 📄 Targets `/daily_bar` timeline for a given stock symbol
 - 🔍 Extracts: `Date`, `Open`, `High`, `Low`, `Close`, `Volume`
 - 🔁 Handles pagination by clicking `次へ`
-- 💾 Outputs `./outputs/playwright_stock_scraper/{symbol}.csv`
+- 💾 Outputs `./outputs/playwright_stock_scraper/{symbol}.{csv|json}`
 - 🛠 Includes basic error handling & retry logic
 
 ## 🗂 Scraping Target
@@ -47,19 +47,55 @@ playwright install
 
 ### 2. Run the scraper
 ```bash
-PYTHONPATH=. python playwright_stock_scraper/main.py 281A
+PYTHONPATH=. python playwright_stock_scraper/main.py <symbol> [csv|json]
 ```
-Replace 281A with any valid Minkabu stock symbol (e.g., 6501, 7203, etc).
+- Replace <symbol> with a valid Minkabu stock symbol (e.g., 281A, 6501, 7203, etc).
+- The second argument specifies the output format:
+  - csv (default if omitted)
+  - json
+
+Examples
+```bash
+# Output as CSV (default)
+PYTHONPATH=. python playwright_stock_scraper/main.py 281A
+
+# Output as JSON
+PYTHONPATH=. python playwright_stock_scraper/main.py 281A json
+```
 
 ### 3. Output sample
 
-Creates a CSV like 281A.csv:
+- CSV output (./outputs/playwright_stock_scraper/281A.csv):
 
 ```bash
 Date,Open,High,Low,Close,Volume
 2025/07/01,1570,1590,1550,1560,1,234,000
 2025/06/28,1540,1580,1530,1570,1,002,000
 ...
+```
+
+- JSON output (./outputs/playwright_stock_scraper/281A.json):
+
+```bash
+[
+  {
+    "Date": "2025/07/01",
+    "Open": "1570",
+    "High": "1590",
+    "Low": "1550",
+    "Close": "1560",
+    "Volume": "1234000"
+  },
+  {
+    "Date": "2025/06/28",
+    "Open": "1540",
+    "High": "1580",
+    "Low": "1530",
+    "Close": "1570",
+    "Volume": "1002000"
+  },
+  ...
+]
 ```
 
 ## 🧪 Testing & Quality

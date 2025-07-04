@@ -7,10 +7,8 @@ from Minkabu's stock detail page with paging support.
 
 from playwright.async_api import async_playwright
 
-from playwright_stock_scraper.writer import save_csv
 
-
-async def scrape(symbol: str):
+async def scrape(symbol: str) -> list[dict]:
     url = f"https://minkabu.jp/stock/{symbol}/daily_bar"
 
     async with async_playwright() as p:
@@ -42,12 +40,9 @@ async def scrape(symbol: str):
 
         await browser.close()
 
-        output_file = f"./outputs/playwright_stock_scraper/{symbol}.csv"
-        save_csv(
-            all_data, output_file, ["Date", "Open", "High", "Low", "Close", "Volume"]
-        )
+        print(f"✅ Scraped {len(all_data)} rows")
 
-        print(f"✅ Scraped {len(all_data)} rows and saved to {output_file}")
+        return all_data
 
 
 async def extract_table_rows(page, selector):
