@@ -10,7 +10,7 @@ An elegant, asynchronous scraper for historical stock data from [Minkabu](https:
 - 📄 Targets `/daily_bar` timeline for a given stock symbol
 - 🔍 Extracts: `Date`, `Open`, `High`, `Low`, `Close`, `Volume`
 - 🔁 Handles pagination by clicking `次へ`
-- 💾 Outputs `./outputs/minkabu_timeline_scraper/{symbol}.csv`
+- 💾 Outputs `./outputs/playwright_stock_scraper/{symbol}.csv`
 - 🛠 Includes basic error handling & retry logic
 
 ## 🗂 Scraping Target
@@ -47,7 +47,7 @@ playwright install
 
 ### 2. Run the scraper
 ```bash
-PYTHONPATH=. python minkabu_timeline_scraper/main.py 281A
+PYTHONPATH=. python playwright_stock_scraper/main.py 281A
 ```
 Replace 281A with any valid Minkabu stock symbol (e.g., 6501, 7203, etc).
 
@@ -85,7 +85,7 @@ PYTHONPATH=. pytest
 ## 📂 Project Structure
 
 ```bash
-minkabu_timeline_scraper/
+playwright_stock_scraper/
 ├── main.py                 # CLI entrypoint
 ├── scraper.py              # Scraper logic
 ├── writer.py               # Output logic

@@ -7,7 +7,7 @@ from Minkabu's stock detail page with paging support.
 
 from playwright.async_api import async_playwright
 
-from minkabu_timeline_scraper.writer import save_csv
+from playwright_stock_scraper.writer import save_csv
 
 
 async def scrape(symbol: str):
@@ -42,7 +42,7 @@ async def scrape(symbol: str):
 
         await browser.close()
 
-        output_file = f"./outputs/minkabu_timeline_scraper/{symbol}.csv"
+        output_file = f"./outputs/playwright_stock_scraper/{symbol}.csv"
         save_csv(
             all_data, output_file, ["Date", "Open", "High", "Low", "Close", "Volume"]
         )
