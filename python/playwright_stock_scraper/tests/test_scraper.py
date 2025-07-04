@@ -3,6 +3,7 @@ from playwright.async_api import async_playwright
 
 from playwright_stock_scraper.scraper import extract_table_rows, parse_row
 
+
 @pytest.mark.asyncio
 async def test_parse_row_with_mock_html():
     html = """
@@ -83,4 +84,3 @@ async def test_extract_table_rows_empty():
         assert rows == []
 
         await browser.close()
-
