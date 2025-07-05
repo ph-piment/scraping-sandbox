@@ -44,7 +44,7 @@ async def scrape(symbol: str) -> list[dict]:
             next_button = await page.query_selector("a.next_page")
             if next_button:
                 if not first:
-                    sleep_time = random.uniform(MIN_SLEEP_SECONDS, MAX_SLEEP_SECONDS)
+                    sleep_time = random.uniform(MIN_SLEEP_SECONDS, MAX_SLEEP_SECONDS)  # nosec B311
                     print(f"🕒 Sleeping for {sleep_time:.2f} seconds before next page")
                     await asyncio.sleep(sleep_time)
                 else:
