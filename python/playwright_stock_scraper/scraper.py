@@ -71,9 +71,7 @@ async def parse_row(row):
 
 
 async def go_to_next_page(
-    page,
-    min_sleep: float = MIN_SLEEP_SECONDS,
-    max_sleep: float = MAX_SLEEP_SECONDS
+    page, min_sleep: float = MIN_SLEEP_SECONDS, max_sleep: float = MAX_SLEEP_SECONDS
 ) -> bool:
     next_button = await page.query_selector("a.next_page")
     if next_button:
