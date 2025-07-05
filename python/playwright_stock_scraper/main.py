@@ -1,5 +1,6 @@
-import sys
 import asyncio
+import sys
+
 from playwright_stock_scraper.usecase import run_scraping_and_save
 
 if __name__ == "__main__":
