@@ -1,7 +1,13 @@
+from unittest.mock import AsyncMock
+
 import pytest
 from playwright.async_api import async_playwright
 
-from playwright_stock_scraper.scraper import extract_table_rows, parse_row
+from playwright_stock_scraper.scraper import (
+    extract_table_rows,
+    go_to_next_page,
+    parse_row,
+)
 
 
 @pytest.mark.asyncio
@@ -84,3 +90,26 @@ async def test_extract_table_rows_empty():
         assert rows == []
 
         await browser.close()
+
+
+@pytest.mark.asyncio
+async def test_go_to_next_page_clicks_once():
+    page = AsyncMock()
+    next_button = AsyncMock()
+    page.query_selector.return_value = next_button
+
+    clicked = await go_to_next_page(page, min_sleep=0.01, max_sleep=0.02)
+
+    assert clicked is True
+    next_button.click.assert_awaited_once()
+    page.wait_for_timeout.assert_awaited_once()
+
+
+@pytest.mark.asyncio
+async def test_go_to_next_page_no_button():
+    page = AsyncMock()
+    page.query_selector.return_value = None
+
+    clicked = await go_to_next_page(page, min_sleep=0.01, max_sleep=0.02)
+
+    assert clicked is False

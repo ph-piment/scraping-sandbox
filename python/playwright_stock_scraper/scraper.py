@@ -33,7 +33,6 @@ async def scrape(symbol: str) -> list[dict]:
 
         all_data = []
 
-        first = True
         while True:
             rows = await extract_table_rows(page, table_selector)
             for row in rows:
@@ -41,20 +40,7 @@ async def scrape(symbol: str) -> list[dict]:
                 if parsed is not None:
                     all_data.append(parsed)
 
-            next_button = await page.query_selector("a.next_page")
-            if next_button:
-                if not first:
-                    sleep_time = random.uniform(
-                        MIN_SLEEP_SECONDS, MAX_SLEEP_SECONDS
-                    )  # nosec B311
-                    print(f"🕒 Sleeping for {sleep_time:.2f} seconds before next page")
-                    await asyncio.sleep(sleep_time)
-                else:
-                    first = False
-
-                await next_button.click()
-                await page.wait_for_timeout(CLICK_WAIT_MILLISECONDS)
-            else:
+            if not await go_to_next_page(page):
                 break
 
         await browser.close()
@@ -82,3 +68,20 @@ async def parse_row(row):
         # "AdjustedClosingPrice": (await cols[5].inner_text()).strip(),
         "Volume": (await cols[6].inner_text()).strip(),
     }
+
+
+async def go_to_next_page(
+    page,
+    min_sleep: float = MIN_SLEEP_SECONDS,
+    max_sleep: float = MAX_SLEEP_SECONDS
+) -> bool:
+    next_button = await page.query_selector("a.next_page")
+    if next_button:
+        sleep_time = random.uniform(min_sleep, max_sleep)  # nosec B311
+        print(f"🕒 Sleeping for {sleep_time:.2f} seconds before next page")
+        await asyncio.sleep(sleep_time)
+
+        await next_button.click()
+        await page.wait_for_timeout(CLICK_WAIT_MILLISECONDS)
+        return True
+    return False
