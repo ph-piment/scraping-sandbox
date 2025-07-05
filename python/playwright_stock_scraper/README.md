@@ -125,9 +125,12 @@ playwright_stock_scraper/
 ├── main.py                 # CLI entrypoint
 ├── scraper.py              # Scraper logic
 ├── writer.py               # Output logic
+├── usecase.py              # Use case: scrape + save
 ├── tests/
 │   ├── test_scraper.py     # Scraper unit tests
-│   └── test_writer.py      # Writer module tests
+│   ├── test_writer.py      # Writer module tests
+│   └── test_usecase.py     # Use case tests
 ├── requirements.txt
+├── pyproject.toml
 └── README.md
 ```
