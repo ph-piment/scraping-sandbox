@@ -1,5 +1,7 @@
 # 📈 Playwright Stock Scraper
 
+[![codecov](https://codecov.io/gh/ph-piment/scraping-sandbox/graph/badge.svg?token=ejJtwle3T4)](https://codecov.io/gh/ph-piment/scraping-sandbox)
+
 An elegant, asynchronous scraper for historical stock data from [Minkabu](https://minkabu.jp/), built with [Playwright for Python](https://playwright.dev/python/).
 
 ---
