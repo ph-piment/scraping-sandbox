@@ -5,7 +5,8 @@ from playwright.async_api import Error
 
 from playwright_stock_scraper.usecase import run_scraping_and_save
 
-if __name__ == "__main__":
+
+def main():
     if len(sys.argv) < 2:
         print("❌ Usage: python main.py <symbol> [csv|json]")
         sys.exit(1)
@@ -18,3 +19,7 @@ if __name__ == "__main__":
     except Error as e:
         print(f"❌ Playwright Error: {e}")
         sys.exit(1)
+
+
+if __name__ == "__main__":
+    main()
