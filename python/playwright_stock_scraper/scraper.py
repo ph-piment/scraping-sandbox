@@ -5,7 +5,16 @@ This script uses Playwright (async) to scrape historical stock data
 from Minkabu's stock detail page with paging support.
 """
 
+import asyncio
+import random
+
 from playwright.async_api import async_playwright
+
+MIN_SLEEP_SECONDS = 0.5
+MAX_SLEEP_SECONDS = 3.0
+PAGE_LOAD_TIMEOUT = 60000
+ROW_WAIT_TIMEOUT = 10000
+CLICK_WAIT_MILLISECONDS = 1000
 
 
 async def scrape(symbol: str) -> list[dict]:
@@ -18,7 +27,7 @@ async def scrape(symbol: str) -> list[dict]:
 
         table_selector = "#fourvalue_timeline"
 
-        await page.goto(url, timeout=60000)
+        await page.goto(url, timeout=PAGE_LOAD_TIMEOUT)
 
         print(f"✅ Scraping {url}")
 
@@ -31,11 +40,7 @@ async def scrape(symbol: str) -> list[dict]:
                 if parsed is not None:
                     all_data.append(parsed)
 
-            next_button = await page.query_selector("a.next_page")
-            if next_button:
-                await next_button.click()
-                await page.wait_for_timeout(1000)
-            else:
+            if not await go_to_next_page(page):
                 break
 
         await browser.close()
@@ -46,7 +51,7 @@ async def scrape(symbol: str) -> list[dict]:
 
 
 async def extract_table_rows(page, selector):
-    await page.wait_for_selector(selector, timeout=10000, state="attached")
+    await page.wait_for_selector(selector, timeout=ROW_WAIT_TIMEOUT, state="attached")
     return await page.query_selector_all(f"{selector} tbody tr")
 
 
@@ -63,3 +68,18 @@ async def parse_row(row):
         # "AdjustedClosingPrice": (await cols[5].inner_text()).strip(),
         "Volume": (await cols[6].inner_text()).strip(),
     }
+
+
+async def go_to_next_page(
+    page, min_sleep: float = MIN_SLEEP_SECONDS, max_sleep: float = MAX_SLEEP_SECONDS
+) -> bool:
+    next_button = await page.query_selector("a.next_page")
+    if next_button:
+        sleep_time = random.uniform(min_sleep, max_sleep)  # nosec B311
+        print(f"🕒 Sleeping for {sleep_time:.2f} seconds before next page")
+        await asyncio.sleep(sleep_time)
+
+        await next_button.click()
+        await page.wait_for_timeout(CLICK_WAIT_MILLISECONDS)
+        return True
+    return False
