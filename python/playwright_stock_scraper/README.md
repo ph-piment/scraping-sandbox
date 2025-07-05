@@ -13,7 +13,7 @@ An elegant, asynchronous scraper for historical stock data from [Minkabu](https:
 - ✅ Async scraping via Playwright (headless)
 - 📄 Targets `/daily_bar` timeline for a given stock symbol
 - 🔍 Extracts: `Date`, `Open`, `High`, `Low`, `Close`, `Volume`
-- 🔁 Handles pagination by clicking `次へ`
+- 🔁 Handles pagination by clicking `次へ`, with randomized delay to mimic human behavior
 - 💾 Outputs `./outputs/playwright_stock_scraper/{symbol}.{csv|json}`
 - 🛠 Includes basic error handling & retry logic
 
@@ -120,6 +120,7 @@ PYTHONPATH=. pytest
 
 - ✅ Minkabu's /stock/{symbol} is allowed in robots.txt
 - 🧘‍♂️ Includes sleep between pages to avoid overloading the server
+- 🎭 Clicks are randomized with delays (0.5–3s) to reduce bot detection risk
 - 🚫 Use responsibly — this is for educational/demo use only
 
 ## 📂 Project Structure
