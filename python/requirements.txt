@@ -22,6 +22,6 @@ pylint==3.3.7
 pip_audit==2.9.0
 setuptools==80.9.0
 bandit==1.8.6
-safety==3.5.2
+safety==3.6.0
 pytest-cov==6.2.1
 coverage==7.9.2
