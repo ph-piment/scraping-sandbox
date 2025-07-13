@@ -4,6 +4,7 @@ import sys
 from playwright.async_api import Error
 
 from playwright_stock_scraper.usecase import run_scraping_and_save
+from utils.error_handling import handle_playwright_error
 
 
 def main():
@@ -17,8 +18,7 @@ def main():
     try:
         asyncio.run(run_scraping_and_save(symbol, output_format))
     except Error as e:
-        print(f"❌ Playwright Error: {e}")
-        sys.exit(1)
+        handle_playwright_error(e)
 
 
 if __name__ == "__main__":

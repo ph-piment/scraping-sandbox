@@ -1,0 +1,12 @@
+{
+  "0": { "name": "fastapi" },
+  "1": { "name": "django" },
+  "2": { "name": "react" },
+  "3": { "name": "nextjs" },
+  "4": { "name": "pytorch" },
+  "5": { "name": "transformers" },
+  "6": { "name": "langchain" },
+  "7": { "name": "supabase" },
+  "8": { "name": "playwright" },
+  "9": { "name": "redis" }
+}

@@ -1,7 +1,7 @@
 import csv
 import json
 
-from playwright_stock_scraper.writer import save_csv, save_json
+from utils.writer import save_csv, save_json
 
 
 def test_save_csv_default_fieldnames(tmp_path):
