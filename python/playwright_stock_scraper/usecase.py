@@ -1,5 +1,5 @@
 from playwright_stock_scraper.scraper import scrape
-from playwright_stock_scraper.writer import save_csv, save_json
+from utils.writer import save_csv, save_json
 
 
 async def run_scraping_and_save(
