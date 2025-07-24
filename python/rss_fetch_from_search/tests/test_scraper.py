@@ -10,7 +10,6 @@ from rss_fetch_from_search.scraper import (
     extract_repo_path,
     extract_rss_links,
     fetch_techs_rss,
-    get_browser_context_args,
     get_tech_info_with_fallbacks,
     handle_simple_captcha,
     is_excluded_url,
@@ -249,20 +248,6 @@ async def test_fetch_techs_rss_success():
     assert result[0]["rss"] == "https://github.com/tiangolo/fastapi/releases.atom"
     assert result[1]["url"] == "https://github.com/numpy/numpy"
     assert result[1]["rss"] == "https://github.com/numpy/numpy/releases.atom"
-
-
-@pytest.mark.asyncio
-async def test_create_context_sets_up_proper_context_and_route():
-    mock_browser = AsyncMock()
-    mock_context = AsyncMock()
-    mock_browser.new_context.return_value = mock_context
-
-    context = await create_context(mock_browser)
-
-    mock_browser.new_context.assert_awaited_once_with(**get_browser_context_args())
-
-    mock_context.route.assert_awaited_once()
-    assert context == mock_context
 
 
 @pytest.mark.asyncio

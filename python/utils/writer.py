@@ -9,8 +9,10 @@ def save_csv(data, output_file, fieldnames=None):
         writer = csv.DictWriter(f, fieldnames=fieldnames)
         writer.writeheader()
         writer.writerows(data)
+    print(f"✅ Saved to CSV File({output_file})")
 
 
 def save_json(data, output_file, indent=2):
     with open(output_file, "w", encoding="utf-8") as f:
         json.dump(data, f, ensure_ascii=False, indent=indent)
+    print(f"✅ Saved to JSON File({output_file})")
