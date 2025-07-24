@@ -5,6 +5,8 @@ from urllib.parse import quote, urljoin, urlparse
 from playwright.async_api import Error as PlaywrightError
 from playwright.async_api import Page, async_playwright
 
+from utils.playwright import create_browser, create_context
+
 BING_EXCLUDE_SITES = [
     "reddit.com",
     "wikipedia.org",
@@ -13,8 +15,6 @@ BING_EXCLUDE_SITES = [
 ]
 
 CONCURRENCY = 3
-
-BLOCKED_RESOURCES = {"image", "stylesheet", "font"}
 
 FALLBACK_ORDERS = [
     ["brave", "mojeek", "bing"],
@@ -173,49 +173,6 @@ async def fetch_techs_rss(techs: Dict[str, Dict]) -> list[Dict]:
             await browser.close()
 
     return results
-
-
-async def create_browser(playwright, headless: bool = True):
-    browser = await playwright.chromium.launch(
-        headless=headless,
-        args=[
-            "--disable-blink-features=AutomationControlled",
-            "--disable-web-security",
-            "--disable-features=IsolateOrigins,site-per-process",
-        ],
-    )
-    return browser
-
-
-def get_browser_context_args() -> dict:
-    return {
-        "locale": "en-US",
-        "viewport": {"width": 1280, "height": 720},
-        "user_agent": (
-            "Mozilla/5.0 (Windows NT 10.0; Win64; x64) "
-            "AppleWebKit/537.36 (KHTML, like Gecko) Chrome/114.0.0.0 Safari/537.36"
-        ),
-        "extra_http_headers": {
-            "Accept-Language": "en-US,en;q=0.9",
-            "DNT": "1",
-        },
-        "storage_state": None,
-    }
-
-
-async def create_context(browser):
-    context = await browser.new_context(**get_browser_context_args())
-
-    async def block_static_resources(route, request):
-        resource_type = getattr(request, "resource_type", "")
-        if resource_type in BLOCKED_RESOURCES:
-            await route.abort()
-        else:
-            await route.continue_()
-
-    await context.route("**/*", block_static_resources)
-
-    return context
 
 
 async def get_tech_info_with_fallbacks(

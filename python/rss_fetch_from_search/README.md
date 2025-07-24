@@ -89,22 +89,6 @@ outputs/rss_fetch_from_search/techs.json
 
 ---
 
-## 🧪 Testing & Quality
-
-This repo includes built-in CI checks:
-
-✅ pytest + coverage
-🎨 black, isort, flake8, pylint, mypy
-🔐 bandit, pip-audit for security
-📦 Uses requirements.txt for consistent builds
-To run tests locally:
-
-```bash
-PYTHONPATH=. pytest
-```
-
----
-
 ## 📂 Project Structure
 
 ```bash

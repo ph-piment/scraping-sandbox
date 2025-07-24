@@ -102,20 +102,6 @@ Date,Open,High,Low,Close,Volume
 ]
 ```
 
-## 🧪 Testing & Quality
-
-This repo includes built-in CI checks:
-
-✅ pytest + coverage
-🎨 black, isort, flake8, pylint, mypy
-🔐 bandit, pip-audit for security
-📦 Uses requirements.txt for consistent builds
-To run tests locally:
-
-```
-PYTHONPATH=. pytest
-```
-
 ## 📄 Notes
 
 - ✅ Minkabu's /stock/{symbol} is allowed in robots.txt

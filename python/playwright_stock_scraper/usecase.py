@@ -13,5 +13,3 @@ async def run_scraping_and_save(
         save_json(data, output_file)
     else:
         save_csv(data, output_file)
-
-    print(f"✅ Saved to {output_file}")
