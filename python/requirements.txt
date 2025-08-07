@@ -1,6 +1,6 @@
 black==25.1.0
 flake8==7.3.0
-greenlet==3.2.3
+greenlet==3.2.4
 iniconfig==2.1.0
 isort==6.0.1
 mccabe==0.7.0
