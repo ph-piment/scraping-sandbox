@@ -1,0 +1,34 @@
+# Go build artifacts
+*.exe
+*.exe~
+*.dll
+*.so
+*.dylib
+*.test
+*.out
+
+# Go coverage files
+*.coverprofile
+*.cov
+coverage.*
+*.cover
+
+# Vendor directory (if you're not committing it)
+vendor/
+
+# Binary output
+/bin/
+/build/
+/dist/
+/output/
+/tmp/
+
+# Go modules cache (just in case)
+go.sum
+
+# IDE/editor files
+.vscode/
+.idea/
+
+# OS-specific
+Thumbs.db
