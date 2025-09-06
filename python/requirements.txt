@@ -9,7 +9,7 @@ mypy_extensions==1.1.0
 packaging==25.0
 pathspec==0.12.1
 platformdirs==4.4.0
-playwright==1.54.0
+playwright==1.55.0
 pluggy==1.6.0
 pycodestyle==2.14.0
 pyee==13.0.0
