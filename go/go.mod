@@ -33,7 +33,7 @@ require (
 	github.com/google/pprof v0.0.0-20250403155104-27863c87afa6 // indirect
 	github.com/gorilla/websocket v1.5.3 // indirect
 	github.com/kr/pretty v0.2.1 // indirect
-	github.com/maxbrunsfeld/counterfeiter/v6 v6.11.3 // indirect
+	github.com/maxbrunsfeld/counterfeiter/v6 v6.12.0 // indirect
 	go.uber.org/automaxprocs v1.6.0 // indirect
 	golang.org/x/mod v0.26.0 // indirect
 	golang.org/x/net v0.42.0 // indirect
