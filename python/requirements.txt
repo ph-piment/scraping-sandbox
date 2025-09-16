@@ -16,7 +16,7 @@ pyee==13.0.0
 pyflakes==3.4.0
 Pygments==2.19.2
 pytest==8.4.2
-pytest-asyncio==1.1.0
+pytest-asyncio==1.2.0
 typing_extensions==4.15.0
 pylint==3.3.8
 pip_audit==2.9.0
