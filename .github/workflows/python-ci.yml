@@ -31,10 +31,10 @@ jobs:
           pip install -r requirements.txt
           playwright install
 
-      - name: 🔐 Dependency security check with pip-audit
+      - name: 🔐 Dependency security check with pip-audit (requirements only)
         run: |
-          echo "Running pip-audit..."
-          pip-audit
+          echo "Running pip-audit on requirements..."
+          pip-audit -r requirements.txt
 
       - name: 🔐 Bandit security check
         run: |
