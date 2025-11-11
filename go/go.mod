@@ -7,7 +7,7 @@ toolchain go1.25.4
 require (
 	github.com/aws/aws-lambda-go v1.50.0
 	github.com/aws/aws-sdk-go-v2 v1.39.6
-	github.com/aws/aws-sdk-go-v2/config v1.31.17
+	github.com/aws/aws-sdk-go-v2/config v1.31.18
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.39.11
 	github.com/onsi/ginkgo/v2 v2.27.2
 	github.com/onsi/gomega v1.38.2
