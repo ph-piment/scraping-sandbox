@@ -14,6 +14,6 @@ async def test_browser_and_context_startup():
         assert context is not None
 
         page = await context.new_page()
-        await page.goto("https://httpbin.org/html")
+        await page.goto("https://example.com")
         await page.screenshot(path="test_example_com.png")
         await browser.close()
