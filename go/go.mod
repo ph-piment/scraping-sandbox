@@ -12,7 +12,7 @@ require (
 	github.com/onsi/ginkgo/v2 v2.27.4
 	github.com/onsi/gomega v1.38.3
 	github.com/slack-go/slack v0.17.3
-	golang.org/x/text v0.32.0
+	golang.org/x/text v0.33.0
 )
 
 require (
