@@ -9,7 +9,7 @@ require (
 	github.com/aws/aws-sdk-go-v2 v1.41.1
 	github.com/aws/aws-sdk-go-v2/config v1.32.7
 	github.com/aws/aws-sdk-go-v2/service/secretsmanager v1.41.1
-	github.com/onsi/ginkgo/v2 v2.27.4
+	github.com/onsi/ginkgo/v2 v2.27.5
 	github.com/onsi/gomega v1.38.3
 	github.com/slack-go/slack v0.17.3
 	golang.org/x/text v0.33.0
