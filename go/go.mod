@@ -2,7 +2,7 @@ module scraping-sandbox
 
 go 1.25
 
-toolchain go1.25.5
+toolchain go1.25.6
 
 require (
 	github.com/aws/aws-lambda-go v1.51.2
